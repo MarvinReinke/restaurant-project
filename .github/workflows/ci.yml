@@ -12,5 +12,7 @@ jobs:
         with:
           distribution: "adopt"
           java-version: 17
+      - name: set permission
+        run: chmod +x ./gradlew
       - name: clean build
-        run: gradlew clean test --info --stacktrace
+        run: ./gradlew clean test --info --stacktrace
