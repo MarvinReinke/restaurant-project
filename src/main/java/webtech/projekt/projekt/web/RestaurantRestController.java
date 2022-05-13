@@ -1,10 +1,7 @@
 package webtech.projekt.projekt.web;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import webtech.projekt.projekt.api.Restaurant;
 import webtech.projekt.projekt.api.RestaurantCreateRequest;
 import webtech.projekt.projekt.service.RestaurantService;
@@ -27,10 +24,17 @@ public class RestaurantRestController {
         return ResponseEntity.ok(restaurantService.findAll());
     }
 
+    @GetMapping(path="/api/v1/restaurants/{id}")
+    public ResponseEntity<Restaurant> fetchRestaurantById(@PathVariable Long id){
+        var restaurant = restaurantService.findById(id);
+        return restaurant != null? ResponseEntity.ok(restaurant) : ResponseEntity.notFound().build();
+    }
+
     @PostMapping(path="/api/v1/restaurants")
     public ResponseEntity<Void> createRestaurant(@RequestBody RestaurantCreateRequest request) throws URISyntaxException {
         var restaurant =restaurantService.create(request);
         URI uri = new URI("/api/v1/restaurants/" + restaurant.getId());
         return ResponseEntity.created(uri).build();
     }
+
 }
