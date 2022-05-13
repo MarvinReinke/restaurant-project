@@ -1,25 +1,14 @@
 package webtech.projekt.projekt.api;
 
-public class Restaurant {
-
-    private long id;
+public class RestaurantCreateRequest {
     private String name;
     private String adresse;
     private int hausnummer;
 
-    public Restaurant(long id, String name, String adresse, int hausnummer) {
-        this.id = id;
+    public RestaurantCreateRequest(String name, String adresse, int hausnummer) {
         this.name = name;
         this.adresse = adresse;
         this.hausnummer = hausnummer;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {

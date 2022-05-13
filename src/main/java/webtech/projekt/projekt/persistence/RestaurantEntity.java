@@ -22,8 +22,7 @@ public class RestaurantEntity {
     @Column(name = "hausnummer", nullable = false)
     public int hausnummer;
 
-    public RestaurantEntity(long id, String name, String adresse, int hausnummer) {
-        this.id = id;
+    public RestaurantEntity(String name, String adresse, int hausnummer) {
         this.name = name;
         this.adresse = adresse;
         this.hausnummer = hausnummer;
