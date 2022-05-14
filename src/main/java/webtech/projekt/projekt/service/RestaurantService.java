@@ -2,7 +2,7 @@ package webtech.projekt.projekt.service;
 
 import org.springframework.stereotype.Service;
 import webtech.projekt.projekt.api.Restaurant;
-import webtech.projekt.projekt.api.RestaurantCreateRequest;
+import webtech.projekt.projekt.api.RestaurantManipulationRequest;
 import webtech.projekt.projekt.persistence.RestaurantEntity;
 import webtech.projekt.projekt.persistence.RestaurantRepository;
 
@@ -30,10 +30,25 @@ public class RestaurantService {
     }
 
 
-    public Restaurant create(RestaurantCreateRequest request){
+    public Restaurant create(RestaurantManipulationRequest request){
      var restaurantEntity = new RestaurantEntity(request.getName(), request.getAdresse(), request.getHausnummer());
      restaurantEntity = restaurantRepository.save(restaurantEntity);
      return transformEntity(restaurantEntity);
+    }
+
+    public Restaurant update(Long id, RestaurantManipulationRequest request){
+        var restaurantEntitiyOptional = restaurantRepository.findById(id);
+        if(restaurantEntitiyOptional.isEmpty()) {
+            return null;
+        }
+
+        var restaurantEntity = restaurantEntitiyOptional.get();
+        restaurantEntity.setName(request.getName());
+        restaurantEntity.setAdresse(request.getAdresse());
+        restaurantEntity.setHausnummer(request.getHausnummer());
+        restaurantEntity = restaurantRepository.save(restaurantEntity);
+
+        return transformEntity(restaurantEntity);
     }
 
     private Restaurant transformEntity(RestaurantEntity restaurantEntity){

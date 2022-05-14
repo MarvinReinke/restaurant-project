@@ -1,11 +1,11 @@
 package webtech.projekt.projekt.api;
 
-public class RestaurantCreateRequest {
+public class RestaurantManipulationRequest {
     private String name;
     private String adresse;
     private int hausnummer;
 
-    public RestaurantCreateRequest(String name, String adresse, int hausnummer) {
+    public RestaurantManipulationRequest(String name, String adresse, int hausnummer) {
         this.name = name;
         this.adresse = adresse;
         this.hausnummer = hausnummer;

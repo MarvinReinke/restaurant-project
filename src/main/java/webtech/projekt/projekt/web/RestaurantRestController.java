@@ -3,7 +3,7 @@ package webtech.projekt.projekt.web;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import webtech.projekt.projekt.api.Restaurant;
-import webtech.projekt.projekt.api.RestaurantCreateRequest;
+import webtech.projekt.projekt.api.RestaurantManipulationRequest;
 import webtech.projekt.projekt.service.RestaurantService;
 
 import java.net.URI;
@@ -31,10 +31,15 @@ public class RestaurantRestController {
     }
 
     @PostMapping(path="/api/v1/restaurants")
-    public ResponseEntity<Void> createRestaurant(@RequestBody RestaurantCreateRequest request) throws URISyntaxException {
+    public ResponseEntity<Void> createRestaurant(@RequestBody RestaurantManipulationRequest request) throws URISyntaxException {
         var restaurant =restaurantService.create(request);
         URI uri = new URI("/api/v1/restaurants/" + restaurant.getId());
         return ResponseEntity.created(uri).build();
     }
 
+    @PutMapping(path= "/api/v1/restaurants/{id}")
+    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long id, @RequestBody RestaurantManipulationRequest request){
+        var restaurant = restaurantService.update(id, request);
+        return restaurant != null? ResponseEntity.ok(restaurant) : ResponseEntity.notFound().build();
+    }
 }
