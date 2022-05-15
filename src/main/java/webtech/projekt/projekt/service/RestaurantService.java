@@ -51,6 +51,15 @@ public class RestaurantService {
         return transformEntity(restaurantEntity);
     }
 
+    public boolean deleteById(Long id){
+        if(!restaurantRepository.existsById(id)){
+            return false;
+        }
+
+        restaurantRepository.deleteById(id);
+        return true;
+    }
+
     private Restaurant transformEntity(RestaurantEntity restaurantEntity){
         return new Restaurant(
                 restaurantEntity.getId(),

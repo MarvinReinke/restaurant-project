@@ -42,4 +42,11 @@ public class RestaurantRestController {
         var restaurant = restaurantService.update(id, request);
         return restaurant != null? ResponseEntity.ok(restaurant) : ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping(path= "/api/v1/restaurants/{id}")
+    public ResponseEntity<Void> deleteRestaurant(@PathVariable Long id){
+        boolean successful = restaurantService.deleteById(id);
+        return successful? ResponseEntity.ok().build(): ResponseEntity.notFound().build();
+
+    }
 }
