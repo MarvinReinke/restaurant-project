@@ -11,6 +11,8 @@ public class RestaurantManipulationRequest {
         this.hausnummer = hausnummer;
     }
 
+    public RestaurantManipulationRequest(){}
+
     public String getName() {
         return name;
     }
