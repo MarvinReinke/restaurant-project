@@ -1,28 +1,15 @@
 package webtech.projekt.projekt.api;
 
-import java.util.List;
-
-public class Kategorie {
-
-    private long id;
+public class KategorieManipulationRequest {
     private String kategorienName;
     private String kategorienBeschreibung;
-    //private List<Long> restaurantIds;
 
-    public Kategorie(long id, String kategorienName, String kategorienBeschreibung /**, List<Long> restaurantIds**/){
-        this.id = id;
+    public KategorieManipulationRequest(String kategorienName, String kategorienBeschreibung){
         this.kategorienName = kategorienName;
         this.kategorienBeschreibung = kategorienBeschreibung;
-        //this.restaurantIds = restaurantIds;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    public KategorieManipulationRequest(){}
 
     public String getKategorienName() {
         return kategorienName;
@@ -39,12 +26,4 @@ public class Kategorie {
     public void setKategorienBeschreibung(String kategorienBeschreibung) {
         this.kategorienBeschreibung = kategorienBeschreibung;
     }
-
-   /* public List<Long> getRestaurantIds() {
-        return restaurantIds;
-    }
-
-    public void setRestaurantIds(List<Long> restaurantIds) {
-        this.restaurantIds = restaurantIds;
-    }*/
 }

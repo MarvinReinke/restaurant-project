@@ -1,27 +1,29 @@
-package webtech.projekt.projekt.api;
+package webtech.projekt.projekt.persistence;
 
-import java.util.List;
+import javax.persistence.*;
 
-public class Kategorie {
+@Entity(name= "kategorie ")
+public class KategorieEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-    private long id;
+    @Column(name = "kategorienName")
     private String kategorienName;
-    private String kategorienBeschreibung;
-    //private List<Long> restaurantIds;
 
-    public Kategorie(long id, String kategorienName, String kategorienBeschreibung /**, List<Long> restaurantIds**/){
-        this.id = id;
+    @Column(name = "kategorienBeschreibung")
+    private String kategorienBeschreibung;
+
+    public KategorieEntity(String kategorienName, String kategorienBeschreibung){
         this.kategorienName = kategorienName;
         this.kategorienBeschreibung = kategorienBeschreibung;
-        //this.restaurantIds = restaurantIds;
     }
 
-    public long getId() {
+    protected KategorieEntity(){}
+
+    public Long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getKategorienName() {
@@ -39,12 +41,4 @@ public class Kategorie {
     public void setKategorienBeschreibung(String kategorienBeschreibung) {
         this.kategorienBeschreibung = kategorienBeschreibung;
     }
-
-   /* public List<Long> getRestaurantIds() {
-        return restaurantIds;
-    }
-
-    public void setRestaurantIds(List<Long> restaurantIds) {
-        this.restaurantIds = restaurantIds;
-    }*/
 }
