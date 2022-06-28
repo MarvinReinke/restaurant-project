@@ -11,7 +11,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+@RestController
 public class KategorieRestController {
+
     private final KategorieService kategorieService;
 
     public KategorieRestController(KategorieService kategorieService){
@@ -19,7 +21,7 @@ public class KategorieRestController {
     }
 
     @GetMapping(path = "/api/v1/kategorien")
-    public ResponseEntity<List<Kategorie>> fetchKategorien(){
+    public ResponseEntity<List<Kategorie>> fetchKategorien() {
         return ResponseEntity.ok(kategorieService.findAll());
     }
 

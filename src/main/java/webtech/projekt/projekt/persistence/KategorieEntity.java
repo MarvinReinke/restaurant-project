@@ -1,8 +1,12 @@
 package webtech.projekt.projekt.persistence;
 
-import javax.persistence.*;
+import webtech.projekt.projekt.api.Restaurant;
 
-@Entity(name= "kategorie ")
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity(name= "kategorie")
 public class KategorieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

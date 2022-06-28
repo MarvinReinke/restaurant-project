@@ -4,11 +4,14 @@ public class RestaurantManipulationRequest {
     private String name;
     private String adresse;
     private int hausnummer;
+    private Long kategorieId;
 
-    public RestaurantManipulationRequest(String name, String adresse, int hausnummer) {
+
+    public RestaurantManipulationRequest(String name, String adresse, int hausnummer, Long kategorieId) {
         this.name = name;
         this.adresse = adresse;
         this.hausnummer = hausnummer;
+        this.kategorieId = kategorieId;
     }
 
     public RestaurantManipulationRequest(){}
@@ -35,5 +38,13 @@ public class RestaurantManipulationRequest {
 
     public void setHausnummer(int hausnummer) {
         this.hausnummer = hausnummer;
+    }
+
+    public Long getKategorieId() {
+        return kategorieId;
+    }
+
+    public void setKategorieId(Long kategorieId) {
+        this.kategorieId = kategorieId;
     }
 }

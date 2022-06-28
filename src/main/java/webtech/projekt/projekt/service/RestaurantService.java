@@ -3,6 +3,7 @@ package webtech.projekt.projekt.service;
 import org.springframework.stereotype.Service;
 import webtech.projekt.projekt.api.Restaurant;
 import webtech.projekt.projekt.api.RestaurantManipulationRequest;
+import webtech.projekt.projekt.persistence.KategorieRepository;
 import webtech.projekt.projekt.persistence.RestaurantEntity;
 import webtech.projekt.projekt.persistence.RestaurantRepository;
 
@@ -11,10 +12,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class RestaurantService {
-    private final RestaurantRepository restaurantRepository;
 
-    public RestaurantService(RestaurantRepository restaurantRepository){
+    private final RestaurantRepository restaurantRepository;
+    private final KategorieRepository kategorieRepository;
+    private final KategorieTransformer kategorieTransformer;
+
+    public RestaurantService(RestaurantRepository restaurantRepository, KategorieRepository kategorieRepository,  KategorieTransformer kategorieTransformer){
         this.restaurantRepository = restaurantRepository;
+        this.kategorieRepository = kategorieRepository;
+        this.kategorieTransformer = kategorieTransformer;
     }
 
     public List<Restaurant> findAll(){
@@ -31,7 +37,8 @@ public class RestaurantService {
 
 
     public Restaurant create(RestaurantManipulationRequest request){
-     var restaurantEntity = new RestaurantEntity(request.getName(), request.getAdresse(), request.getHausnummer());
+     var kategorie = kategorieRepository.findById(request.getKategorieId()).orElseThrow();
+     var restaurantEntity = new RestaurantEntity(request.getName(), request.getAdresse(), request.getHausnummer(),kategorie);
      restaurantEntity = restaurantRepository.save(restaurantEntity);
      return transformEntity(restaurantEntity);
     }
@@ -65,7 +72,8 @@ public class RestaurantService {
                 restaurantEntity.getId(),
                 restaurantEntity.getName(),
                 restaurantEntity.getAdresse(),
-                restaurantEntity.getHausnummer()
+                restaurantEntity.getHausnummer(),
+                kategorieTransformer.transformEntity(restaurantEntity.getKategorie())
         );
     }
 }

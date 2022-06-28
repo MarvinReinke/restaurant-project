@@ -22,10 +22,15 @@ public class RestaurantEntity {
     @Column(name = "hausnummer", nullable = false)
     public int hausnummer;
 
-    public RestaurantEntity(String name, String adresse, int hausnummer) {
+    @OneToOne
+    @JoinColumn(name = "kategorie_id", referencedColumnName = "id")
+    private KategorieEntity kategorie;
+
+    public RestaurantEntity(String name, String adresse, int hausnummer, KategorieEntity kategorie) {
         this.name = name;
         this.adresse = adresse;
         this.hausnummer = hausnummer;
+        this.kategorie = kategorie;
     }
 
     protected RestaurantEntity(){}
@@ -56,5 +61,13 @@ public class RestaurantEntity {
 
     public void setHausnummer(int hausnummer) {
         this.hausnummer = hausnummer;
+    }
+
+    public KategorieEntity getKategorie() {
+        return kategorie;
+    }
+
+    public void setKategorie(KategorieEntity kategorie) {
+        this.kategorie = kategorie;
     }
 }
