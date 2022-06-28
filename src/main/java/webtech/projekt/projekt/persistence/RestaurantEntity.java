@@ -22,7 +22,7 @@ public class RestaurantEntity {
     @Column(name = "hausnummer", nullable = false)
     public int hausnummer;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "kategorie_id", referencedColumnName = "id")
     private KategorieEntity kategorie;
 

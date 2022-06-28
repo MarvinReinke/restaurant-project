@@ -19,6 +19,9 @@ public class KategorieEntity {
     @Column(name = "kategorienBeschreibung")
     private String kategorienBeschreibung;
 
+    @OneToOne(mappedBy = "kategorie")
+    private RestaurantEntity restaurant;
+
     public KategorieEntity(String kategorienName, String kategorienBeschreibung){
         this.kategorienName = kategorienName;
         this.kategorienBeschreibung = kategorienBeschreibung;
@@ -44,5 +47,13 @@ public class KategorieEntity {
 
     public void setKategorienBeschreibung(String kategorienBeschreibung) {
         this.kategorienBeschreibung = kategorienBeschreibung;
+    }
+
+    public RestaurantEntity getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(RestaurantEntity restaurant) {
+        this.restaurant = restaurant;
     }
 }
