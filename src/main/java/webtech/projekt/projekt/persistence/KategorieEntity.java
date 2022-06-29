@@ -19,8 +19,8 @@ public class KategorieEntity {
     @Column(name = "kategorienBeschreibung")
     private String kategorienBeschreibung;
 
-    @OneToOne(mappedBy = "kategorie")
-    private RestaurantEntity restaurant;
+    @OneToMany(mappedBy = "kategorie", fetch = FetchType.EAGER)
+    private List<RestaurantEntity> restaurants = new ArrayList<>();
 
     public KategorieEntity(String kategorienName, String kategorienBeschreibung){
         this.kategorienName = kategorienName;
@@ -49,11 +49,11 @@ public class KategorieEntity {
         this.kategorienBeschreibung = kategorienBeschreibung;
     }
 
-    public RestaurantEntity getRestaurant() {
-        return restaurant;
+    public List<RestaurantEntity> getRestaurants() {
+        return restaurants;
     }
 
-    public void setRestaurant(RestaurantEntity restaurant) {
-        this.restaurant = restaurant;
+    public void setRestaurants(List<RestaurantEntity> restaurants) {
+        this.restaurants = restaurants;
     }
 }
