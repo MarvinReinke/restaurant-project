@@ -6,6 +6,7 @@ import webtech.projekt.projekt.api.Restaurant;
 import webtech.projekt.projekt.api.RestaurantManipulationRequest;
 import webtech.projekt.projekt.service.RestaurantService;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -31,7 +32,7 @@ public class RestaurantRestController {
     }
 
     @PostMapping(path="/api/v1/restaurants")
-    public ResponseEntity<Void> createRestaurant(@RequestBody RestaurantManipulationRequest request) throws URISyntaxException {
+    public ResponseEntity<Void> createRestaurant(@Valid @RequestBody RestaurantManipulationRequest request) throws URISyntaxException {
         var valid = validate(request);
         if(valid) {
             var restaurant = restaurantService.create(request);
