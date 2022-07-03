@@ -20,13 +20,13 @@ public class RestaurantEntity {
     public String adresse;
 
     @Column(name = "hausnummer", nullable = false)
-    public int hausnummer;
+    public String hausnummer;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "kategorie_id", referencedColumnName = "id")
     private KategorieEntity kategorie;
 
-    public RestaurantEntity(String name, String adresse, int hausnummer, KategorieEntity kategorie) {
+    public RestaurantEntity(String name, String adresse, String hausnummer, KategorieEntity kategorie) {
         this.name = name;
         this.adresse = adresse;
         this.hausnummer = hausnummer;
@@ -55,11 +55,11 @@ public class RestaurantEntity {
         this.adresse = adresse;
     }
 
-    public int getHausnummer() {
+    public String getHausnummer() {
         return hausnummer;
     }
 
-    public void setHausnummer(int hausnummer) {
+    public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
 

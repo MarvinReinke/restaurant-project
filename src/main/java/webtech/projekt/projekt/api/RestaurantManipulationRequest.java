@@ -3,18 +3,18 @@ package webtech.projekt.projekt.api;
 public class RestaurantManipulationRequest {
     private String name;
     private String adresse;
-    private int hausnummer;
+    private String hausnummer;
     private Long kategorieId;
 
 
-    public RestaurantManipulationRequest(String name, String adresse, int hausnummer, Long kategorieId) {
+    public RestaurantManipulationRequest(String name, String adresse, String hausnummer, Long kategorieId) {
         this.name = name;
         this.adresse = adresse;
         this.hausnummer = hausnummer;
         this.kategorieId = kategorieId;
     }
 
-    public RestaurantManipulationRequest(){}
+    public RestaurantManipulationRequest() {}
 
     public String getName() {
         return name;
@@ -32,11 +32,11 @@ public class RestaurantManipulationRequest {
         this.adresse = adresse;
     }
 
-    public int getHausnummer() {
+    public String getHausnummer() {
         return hausnummer;
     }
 
-    public void setHausnummer(int hausnummer) {
+    public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
 

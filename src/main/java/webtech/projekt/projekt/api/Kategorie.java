@@ -7,13 +7,13 @@ public class Kategorie {
     private long id;
     private String kategorienName;
     private String kategorienBeschreibung;
-    private List<Long> restaurantIds;
+    private List<Long> restaurants;
 
-    public Kategorie(long id, String kategorienName, String kategorienBeschreibung, List<Long> restaurantIds){
+    public Kategorie(long id, String kategorienName, String kategorienBeschreibung, List<Long> restaurants){
         this.id = id;
         this.kategorienName = kategorienName;
         this.kategorienBeschreibung = kategorienBeschreibung;
-        this.restaurantIds = restaurantIds;
+        this.restaurants = restaurants;
     }
 
     public long getId() {
@@ -40,11 +40,11 @@ public class Kategorie {
         this.kategorienBeschreibung = kategorienBeschreibung;
     }
 
-    public List<Long> getRestaurantIds() {
-        return restaurantIds;
+    public List<Long> getRestaurants() {
+        return restaurants;
     }
 
-    public void setRestaurantIds(List<Long> restaurantIds) {
-        this.restaurantIds = restaurantIds;
+    public void setRestaurantIds(List<Long> restaurants) {
+        this.restaurants = restaurants;
     }
 }

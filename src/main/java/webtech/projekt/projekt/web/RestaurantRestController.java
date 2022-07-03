@@ -32,9 +32,14 @@ public class RestaurantRestController {
 
     @PostMapping(path="/api/v1/restaurants")
     public ResponseEntity<Void> createRestaurant(@RequestBody RestaurantManipulationRequest request) throws URISyntaxException {
-        var restaurant =restaurantService.create(request);
-        URI uri = new URI("/api/v1/restaurants/" + restaurant.getId());
-        return ResponseEntity.created(uri).build();
+        var valid = validate(request);
+        if(valid) {
+            var restaurant = restaurantService.create(request);
+            URI uri = new URI("/api/v1/restaurants/" + restaurant.getId());
+            return ResponseEntity.created(uri).build();
+        }else{
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping(path= "/api/v1/restaurants/{id}")
@@ -48,5 +53,14 @@ public class RestaurantRestController {
         boolean successful = restaurantService.deleteById(id);
         return successful? ResponseEntity.ok().build(): ResponseEntity.notFound().build();
 
+    }
+
+    private boolean validate(RestaurantManipulationRequest request){
+        return request.getName() != null
+                && !request.getName().isBlank()
+                && request.getAdresse() != null
+                && !request.getAdresse().isBlank()
+                && request.getHausnummer() != null
+                && !request.getHausnummer().isBlank();
     }
 }

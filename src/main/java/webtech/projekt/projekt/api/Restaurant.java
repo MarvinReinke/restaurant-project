@@ -5,10 +5,10 @@ public class Restaurant {
     private long id;
     private String name;
     private String adresse;
-    private int hausnummer;
+    private String hausnummer;
     private Kategorie kategorie;
 
-    public Restaurant(long id, String name, String adresse, int hausnummer, Kategorie kategorie) {
+    public Restaurant(long id, String name, String adresse, String hausnummer, Kategorie kategorie) {
         this.id = id;
         this.name = name;
         this.adresse = adresse;
@@ -40,11 +40,11 @@ public class Restaurant {
         this.adresse = adresse;
     }
 
-    public int getHausnummer() {
+    public String getHausnummer() {
         return hausnummer;
     }
 
-    public void setHausnummer(int hausnummer) {
+    public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
 
