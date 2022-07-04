@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.*;
 import webtech.projekt.projekt.api.Kategorie;
 import webtech.projekt.projekt.api.KategorieManipulationRequest;
 import webtech.projekt.projekt.service.KategorieService;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
+@Validated
 public class KategorieRestController {
 
     private final KategorieService kategorieService;
@@ -32,10 +35,13 @@ public class KategorieRestController {
     }
 
     @PostMapping(path = "/api/v1/kategorien")
-    public ResponseEntity<Void> createKategorie(@RequestBody KategorieManipulationRequest request) throws URISyntaxException{
+    public ResponseEntity<Void> createKategorie(@Valid @RequestBody KategorieManipulationRequest request) throws URISyntaxException{
         var kategorie = kategorieService.create(request);
         URI uri = new URI("/api/v1/kategorien/" + kategorie.getId());
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity
+                .created(uri)
+                .header("Acces-Control-Expose-Headers", "Location")
+                .build();
     }
 
     @PutMapping(path = "/api/v1/kategorien({id}")

@@ -1,13 +1,14 @@
 package webtech.projekt.projekt.api;
 
-public class KategorieManipulationRequest {
-    private String kategorienName;
-    private String kategorienBeschreibung;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-    public KategorieManipulationRequest(String kategorienName, String kategorienBeschreibung){
-        this.kategorienName = kategorienName;
-        this.kategorienBeschreibung = kategorienBeschreibung;
-    }
+public class KategorieManipulationRequest {
+    @Size(message = "Die Kategorie muss mehr als 2 Zeichen lang sein")
+    private String kategorienName;
+
+    @NotBlank(message = "Die Kategorie muss eine Beschreibung haben")
+    private String kategorienBeschreibung;
 
     public KategorieManipulationRequest(){}
 

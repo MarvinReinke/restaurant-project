@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import webtech.projekt.projekt.api.Restaurant;
 import webtech.projekt.projekt.api.RestaurantManipulationRequest;
 import webtech.projekt.projekt.service.RestaurantService;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -12,6 +13,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
+@Validated
 public class RestaurantRestController {
 
     private final RestaurantService restaurantService;
@@ -33,14 +35,12 @@ public class RestaurantRestController {
 
     @PostMapping(path="/api/v1/restaurants")
     public ResponseEntity<Void> createRestaurant(@Valid @RequestBody RestaurantManipulationRequest request) throws URISyntaxException {
-        var valid = validate(request);
-        if(valid) {
             var restaurant = restaurantService.create(request);
             URI uri = new URI("/api/v1/restaurants/" + restaurant.getId());
-            return ResponseEntity.created(uri).build();
-        }else{
-            return ResponseEntity.badRequest().build();
-        }
+            return ResponseEntity
+                    .created(uri)
+                    .header("Acces-Control-Expose-Headers", "Location")
+                    .build();
     }
 
     @PutMapping(path= "/api/v1/restaurants/{id}")
@@ -54,14 +54,5 @@ public class RestaurantRestController {
         boolean successful = restaurantService.deleteById(id);
         return successful? ResponseEntity.ok().build(): ResponseEntity.notFound().build();
 
-    }
-
-    private boolean validate(RestaurantManipulationRequest request){
-        return request.getName() != null
-                && !request.getName().isBlank()
-                && request.getAdresse() != null
-                && !request.getAdresse().isBlank()
-                && request.getHausnummer() != null
-                && !request.getHausnummer().isBlank();
     }
 }

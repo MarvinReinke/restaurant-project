@@ -33,7 +33,7 @@ public class RestaurantEntity {
         this.kategorie = kategorie;
     }
 
-    protected RestaurantEntity(){}
+    public RestaurantEntity(){}
 
     public long getId() {
         return id;
