@@ -36,12 +36,12 @@ public class KategorieRestController {
 
     @PostMapping(path = "/api/v1/kategorien")
     public ResponseEntity<Void> createKategorie(@Valid @RequestBody KategorieManipulationRequest request) throws URISyntaxException{
-        var kategorie = kategorieService.create(request);
-        URI uri = new URI("/api/v1/kategorien/" + kategorie.getId());
-        return ResponseEntity
-                .created(uri)
-                .header("Acces-Control-Expose-Headers", "Location")
-                .build();
+            var kategorie = kategorieService.create(request);
+            URI uri = new URI("/api/v1/kategorien/" + kategorie.getId());
+            return ResponseEntity
+                    .created(uri)
+                    .header("Acces-Control-Expose-Headers", "Location")
+                    .build();
     }
 
     @PutMapping(path = "/api/v1/kategorien({id}")

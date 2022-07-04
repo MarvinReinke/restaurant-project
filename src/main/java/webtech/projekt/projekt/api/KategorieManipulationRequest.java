@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class KategorieManipulationRequest {
-    @Size(message = "Die Kategorie muss mehr als 2 Zeichen lang sein")
+    @Size(min = 2, message = "Die Kategorie muss mehr als 2 Zeichen lang sein")
     private String kategorienName;
 
     @NotBlank(message = "Die Kategorie muss eine Beschreibung haben")
